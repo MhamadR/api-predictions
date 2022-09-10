@@ -21,3 +21,12 @@ body {
   background-color: #fff;
   color: black;
 }
+
+.b {
+  border: 1px solid red;
+  height: 500px;
+  width: 500px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+}
