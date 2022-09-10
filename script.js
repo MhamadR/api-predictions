@@ -37,4 +37,17 @@ async function loadByBreed(breed) {
 function predict() {
   const name = document.getElementById("name").value;
   console.log(name);
+
+  predictGender(name);
+}
+
+async function predictGender(name) {
+  try {
+    const response = await fetch(`https://api.genderize.io/?name=${name}`);
+    const data = await response.json();
+    document.getElementById("gender").innerText = data.gender;
+    console.log(data.gender);
+  } catch (e) {
+    console.log("There was a problem fetching the breed list.");
+  }
 }
