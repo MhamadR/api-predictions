@@ -33,3 +33,8 @@ async function loadByBreed(breed) {
     "breedPic"
   ).style.backgroundImage = `url(${randBreedPic})`;
 }
+
+function predict() {
+  const name = document.getElementById("name").value;
+  console.log(name);
+}
