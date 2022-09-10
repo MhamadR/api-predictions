@@ -46,10 +46,9 @@ async function predictGender(name) {
   try {
     const response = await fetch(`https://api.genderize.io/?name=${name}`);
     const data = await response.json();
-    document.getElementById("gender").innerText = data.gender;
-    console.log(data.gender);
+    document.getElementById("gender").innerText = "Gender: " + data.gender;
   } catch (e) {
-    console.log("There was a problem fetching the breed list.");
+    console.log("There was a problem fetching the gender prediction api.");
   }
 }
 
@@ -57,25 +56,26 @@ async function predictAge(name) {
   try {
     const response = await fetch(`https://api.agify.io/?name=${name}`);
     const data = await response.json();
-    document.getElementById("age").innerText = data.age;
-    console.log(data.age);
+    document.getElementById("age").innerText = "Age: " + data.age;
   } catch (e) {
-    console.log("There was a problem fetching the breed list.");
+    console.log("There was a problem fetching the age prediction api.");
   }
 }
 
 async function predictNationality(name) {
-  try {
-    const response = await fetch(`https://api.nationalize.io/?name=${name}`);
-    const data = await response.json();
-    for (i in data.country) {
-      document.getElementById("nationality").innerHTML += ` 
-        <p>${
-          data.country[i].country_id + " ," + data.country[i].probability
-        }</p>`;
-      console.log(data.country);
+  const nationality = document.getElementById("nationality");
+  if (!nationality.innerHTML) {
+    try {
+      const response = await fetch(`https://api.nationalize.io/?name=${name}`);
+      const data = await response.json();
+      for (i in data.country) {
+        nationality.innerHTML += ` 
+        <p>Nationality: ${data.country[i].country_id}, Probability: ${data.country[i].probability}</p>`;
+      }
+    } catch (e) {
+      console.log(
+        "There was a problem fetching the nationality prediction api."
+      );
     }
-  } catch (e) {
-    console.log("There was a problem fetching the breed list.");
   }
 }
