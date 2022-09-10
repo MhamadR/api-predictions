@@ -36,9 +36,9 @@ async function loadByBreed(breed) {
 
 function predict() {
   const name = document.getElementById("name").value;
-  console.log(name);
 
   predictGender(name);
+  predictAge(name);
 }
 
 async function predictGender(name) {
@@ -47,6 +47,17 @@ async function predictGender(name) {
     const data = await response.json();
     document.getElementById("gender").innerText = data.gender;
     console.log(data.gender);
+  } catch (e) {
+    console.log("There was a problem fetching the breed list.");
+  }
+}
+
+async function predictAge(name) {
+  try {
+    const response = await fetch(`https://api.agify.io/?name=${name}`);
+    const data = await response.json();
+    document.getElementById("age").innerText = data.age;
+    console.log(data.age);
   } catch (e) {
     console.log("There was a problem fetching the breed list.");
   }
