@@ -1,4 +1,7 @@
+//  when the document loads, display a random dog pic of the initially selected breed
 window.onload = loadByBreed("affenpinscher");
+
+// Get a list of all the breeds available in the api
 async function fetchBreedData() {
   try {
     const response = await fetch("https://dog.ceo/api/breeds/list/all");
@@ -11,6 +14,7 @@ async function fetchBreedData() {
 
 fetchBreedData();
 
+// Creating a dropdown (select) menu of all the breeds
 function createBreedList(breedList) {
   document.getElementById("breedListContainer").innerHTML = `
   <select onchange="loadByBreed(this.value)">
@@ -23,17 +27,29 @@ function createBreedList(breedList) {
   `;
 }
 
+// Displaying a random dog picture based on the breed selected
 async function loadByBreed(breed) {
-  const response = await fetch(
-    `https://dog.ceo/api/breed/${breed}/images/random`
-  );
-  const data = await response.json();
-  const randBreedPic = data.message;
-  document.getElementById(
-    "breedPic"
-  ).style.backgroundImage = `url(${randBreedPic})`;
+  try {
+    const response = await fetch(
+      `https://dog.ceo/api/breed/${breed}/images/random`
+    );
+    const data = await response.json();
+    const randBreedPic = data.message;
+    document.getElementById(
+      "breedPic"
+    ).style.backgroundImage = `url(${randBreedPic})`;
+  } catch (e) {
+    console.log(
+      "There was a problem fetching the api for random dog pictures."
+    );
+  }
+
+  // setInterval(function () {
+  //   loadByBreed(breed);
+  // }, 10000);
 }
 
+// Taking the input name to call the prediction functions
 function predict() {
   const name = document.getElementById("name").value;
 
@@ -42,6 +58,7 @@ function predict() {
   predictNationality(name);
 }
 
+// Fetching and displaying gender prediction
 async function predictGender(name) {
   try {
     const response = await fetch(`https://api.genderize.io/?name=${name}`);
@@ -52,6 +69,7 @@ async function predictGender(name) {
   }
 }
 
+// Fetching and displaying age prediction
 async function predictAge(name) {
   try {
     const response = await fetch(`https://api.agify.io/?name=${name}`);
@@ -62,20 +80,18 @@ async function predictAge(name) {
   }
 }
 
+// Fetching and displaying nationality prediction with its corresponding age
 async function predictNationality(name) {
   const nationality = document.getElementById("nationality");
-  if (!nationality.innerHTML) {
-    try {
-      const response = await fetch(`https://api.nationalize.io/?name=${name}`);
-      const data = await response.json();
-      for (i in data.country) {
-        nationality.innerHTML += ` 
+  nationality.innerHTML = "";
+  try {
+    const response = await fetch(`https://api.nationalize.io/?name=${name}`);
+    const data = await response.json();
+    for (i in data.country) {
+      nationality.innerHTML += ` 
         <p>Nationality: ${data.country[i].country_id}, Probability: ${data.country[i].probability}</p>`;
-      }
-    } catch (e) {
-      console.log(
-        "There was a problem fetching the nationality prediction api."
-      );
     }
+  } catch (e) {
+    console.log("There was a problem fetching the nationality prediction api.");
   }
 }
