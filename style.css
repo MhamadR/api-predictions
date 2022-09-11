@@ -43,15 +43,6 @@ section {
   overflow: hidden;
 }
 
-.predictions {
-  height: 40vh;
-}
-
-.pic-container {
-  width: 100%;
-  height: 40vh;
-}
-
 .nameInput,
 select {
   width: 10rem;
@@ -61,6 +52,20 @@ select {
   text-align: center;
 }
 
+.predictions label {
+  margin: 0.7rem 0;
+  font-weight: 550;
+}
+
+.predictions {
+  height: 37vh;
+}
+
+.pic-container {
+  width: 100%;
+  height: 43vh;
+}
+
 .btn {
   background-color: rgb(92, 32, 155);
   width: 7rem;
@@ -68,11 +73,11 @@ select {
   border: 1px solid black;
   border-radius: 10px;
   color: #fff;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 }
 
 select {
-  margin: 1rem 0;
+  margin-bottom: 0.5rem;
   text-transform: capitalize;
 }
 
