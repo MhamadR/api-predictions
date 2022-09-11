@@ -22,10 +22,63 @@ body {
   color: black;
 }
 
+.header {
+  text-align: center;
+  height: 20vh;
+  width: 100%;
+  background-color: rgb(0, 0, 0);
+  padding-top: 2rem;
+}
+
+.header h1 {
+  color: #fff;
+}
+
+section {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: hidden;
+}
+
+.predictions {
+  height: 40vh;
+}
+
+.pic-container {
+  width: 100%;
+  height: 40vh;
+}
+
+.nameInput,
+select {
+  width: 10rem;
+  height: 1.3rem;
+  border: 2px solid rgb(92, 32, 155);
+  border-radius: 5px;
+  text-align: center;
+}
+
+.btn {
+  background-color: rgb(92, 32, 155);
+  width: 7rem;
+  height: 1.5rem;
+  border: 1px solid black;
+  border-radius: 10px;
+  color: #fff;
+  margin-top: 1rem;
+}
+
+select {
+  margin: 1rem 0;
+  text-transform: capitalize;
+}
+
 .dogPic {
-  border: 1px solid red;
-  height: 500px;
-  width: 500px;
+  height: 100%;
+  width: 100%;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: contain;

@@ -9,16 +9,31 @@
     <script src="script.js"></script>
   </head>
   <body>
-    <div id="breedListContainer"></div>
-    <div id="breedPic" class="dogPic"></div>
-
-    <label for="name">Enter your name: </label>
-    <input type="text" id="name" />
-    <button onclick="predict()"></button>
-    <div>
-      <p id="gender"></p>
-      <p id="age"></p>
-      <div id="nationality"></div>
+    <!--  Start of Header -->
+    <div class="header">
+      <h1>Demographic Prediction</h1>
     </div>
+    <!-- End of Header -->
+
+    <!-- Start of Predictions and Input Section -->
+    <section class="predictions">
+      <label for="name">Enter your name: </label>
+      <input type="text" id="name" class="nameInput" />
+      <button class="btn" onclick="predict()">Predict</button>
+
+      <div>
+        <p id="gender"></p>
+        <p id="age"></p>
+        <div id="nationality"></div>
+      </div>
+    </section>
+    <!-- End of Predictions and Input Section -->
+
+    <!-- Start of Dog Breed Input and Random Dog Picture Display Section -->
+    <section class="pic-container">
+      <div id="breedListContainer"></div>
+      <div id="breedPic" class="dogPic"></div>
+    </section>
+    <!-- End of Dog Breed Input and Random Dog Picture Display Section-->
   </body>
 </html>
